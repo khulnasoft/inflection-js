@@ -1,33 +1,29 @@
 /**
+ * Type for transformation function names
+ */
+type TransformFunctionName = 'pluralize' | 'singularize' | 'camelize' | 'underscore' | 'humanize' | 'capitalize' | 'dasherize' | 'titleize' | 'demodulize' | 'tableize' | 'classify' | 'foreignKey' | 'ordinalize';
+/**
+ * Type for transformation function return types
+ */
+type TransformFunctionReturn<T extends TransformFunctionName> = string;
+/**
+ * Type for the transform function array parameter
+ */
+type TransformFunctionArray = TransformFunctionName[];
+/**
  * This function adds pluralization support to every String object.
  * @param str The subject string.
  * @param plural Overrides normal output with said String.(optional)
  * @returns Singular English language nouns are returned in plural form.
- * @example
- *
- *     const inflection = require( 'inflection' );
- *
- *     inflection.pluralize( 'person' ); // === 'people'
- *     inflection.pluralize( 'octopus' ); // === 'octopuses'
- *     inflection.pluralize( 'Hat' ); // === 'Hats'
- *     inflection.pluralize( 'person', 'guys' ); // === 'guys'
  */
-export declare function pluralize(str: string, plural?: string): string;
+export declare function pluralize(str: string, plural?: string): TransformFunctionReturn<'pluralize'>;
 /**
  * This function adds singularization support to every String object.
  * @param str The subject string.
  * @param singular Overrides normal output with said String.(optional)
  * @returns Plural English language nouns are returned in singular form.
- * @example
- *
- *     const inflection = require( 'inflection' );
- *
- *     inflection.singularize( 'people' ); // === 'person'
- *     inflection.singularize( 'octopuses' ); // === 'octopus'
- *     inflection.singularize( 'Hats' ); // === 'Hat'
- *     inflection.singularize( 'guys', 'person' ); // === 'person'
  */
-export declare function singularize(str: string, singular?: string): string;
+export declare function singularize(str: string, singular?: string): TransformFunctionReturn<'singularize'>;
 /**
  * This function will pluralize or singularlize a String appropriately based on a number value
  * @param str The subject string.
@@ -165,18 +161,18 @@ export declare function tableize(str: string): string;
  */
 export declare function classify(str: string): string;
 /**
-   * This function adds foreign key support to every String object.
-   * @param str The subject string.
-   * @param dropIdUbar Default is to seperate id with an underbar at the end of the class name,
-                                 you can pass true to skip it.(optional)
-   * @returns Underscored plural nouns become the camel cased singular form.
-   * @example
-   *
-   *     const inflection = require( 'inflection' );
-   *
-   *     inflection.foreign_key( 'MessageBusProperty' ); // === 'message_bus_property_id'
-   *     inflection.foreign_key( 'MessageBusProperty', true ); // === 'message_bus_propertyid'
-   */
+ * This function adds foreign key support to every String object.
+ * @param str The subject string.
+ * @param dropIdUbar Default is to seperate id with an underbar at the end of the class name,
+                                   you can pass true to skip it.(optional)
+ * @returns Underscored plural nouns become the camel cased singular form.
+ * @example
+ *
+ *     const inflection = require( 'inflection' );
+ *
+ *     inflection.foreign_key( 'MessageBusProperty' ); // === 'message_bus_property_id'
+ *     inflection.foreign_key( 'MessageBusProperty', true ); // === 'message_bus_propertyid'
+ */
 export declare function foreignKey(str: string, dropIdUbar?: boolean): string;
 /**
  * This function adds ordinalize support to every String object.
@@ -189,31 +185,11 @@ export declare function foreignKey(str: string, dropIdUbar?: boolean): string;
  *     inflection.ordinalize( 'the 1 pitch' ); // === 'the 1st pitch'
  */
 export declare function ordinalize(str: string): string;
-declare const transformFunctions: {
-    readonly pluralize: typeof pluralize;
-    readonly singularize: typeof singularize;
-    readonly camelize: typeof camelize;
-    readonly underscore: typeof underscore;
-    readonly humanize: typeof humanize;
-    readonly capitalize: typeof capitalize;
-    readonly dasherize: typeof dasherize;
-    readonly titleize: typeof titleize;
-    readonly demodulize: typeof demodulize;
-    readonly tableize: typeof tableize;
-    readonly classify: typeof classify;
-    readonly foreignKey: typeof foreignKey;
-    readonly ordinalize: typeof ordinalize;
-};
 /**
  * This function performs multiple inflection methods on a string
  * @param str The subject string.
  * @param arr An array of inflection methods.
- * @returns
- * @example
- *
- *     const inflection = require( 'inflection' );
- *
- *     inflection.transform( 'all job', [ 'pluralize', 'capitalize', 'dasherize' ]); // === 'All-jobs'
+ * @returns The transformed string
  */
-export declare function transform(str: string, arr: (keyof typeof transformFunctions)[]): string;
+export declare function transform(str: string, arr: TransformFunctionArray): string;
 export {};
