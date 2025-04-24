@@ -1,0 +1,44 @@
+{
+  "name": "inflection-js",
+  "version": "1.0.0",
+  "description": "A port of inflection to node.js module",
+  "type": "module",
+  "keywords": [
+    "inflection",
+    "inflections",
+    "inflection-js",
+    "pluralize",
+    "singularize",
+    "camelize",
+    "underscore",
+    "humanize",
+    "capitalize",
+    "dasherize",
+    "titleize",
+    "demodulize",
+    "tableize",
+    "classify",
+    "foreign_key",
+    "ordinalize"
+  ],
+  "author": "khulnasoft <admin@khulnasoft.com>",
+  "devDependencies": {
+    "typescript": "^5.7.2",
+    "vitest": "^3.1.2"
+  },
+  "main": "./lib/inflection.js",
+  "types": "./lib/inflection.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/khulnasoft/inflection-js.git"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest",
+    "prepublishOnly": "npm run test -- --run && npm run build"
+  }
+}

@@ -1,0 +1,12 @@
+support
+test
+examples
+*.sock
+
+# Development files
+.github
+
+# Other source files
+bower.json
+component.json
+inflection.min.js
